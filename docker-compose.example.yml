@@ -15,7 +15,7 @@ services:
             - "--acme.httpChallenge.entryPoint=http"
             - "--acme.OnHostRule=true"
             - "--acme.onDemand=false"
-            - "--acme.email=abm@austinbmiles.com"    
+            - "--acme.email="
             - "--docker"
         ports:
           - "80:80"     #The HTTP port
