@@ -8,7 +8,6 @@ services:
     command:
       - --entrypoints.http.address=:80
       - --entrypoints.https.address=:443
-      - --entrypoints.mysql.address=:3306
       - --api.insecure=true
       - --providers.docker=true
       - --providers.docker.exposedByDefault=false
