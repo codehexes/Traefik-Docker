@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: always
+    command:
+      - --entrypoints.http.address=:80
+      - --entrypoints.https.address=:443
+      - --entrypoints.mysql.address=:3306
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedByDefault=false
+      - --providers.file.directory=/etc/traefik/dynamic_conf
+    ports:
+      - 80:80
+      - 443:443
+      - 3306:3306
+      - 8080:8080
+    volumes:
+      - ./traefik/certs:/certs:ro
+      - ./traefik/config.yml:/etc/traefik/dynamic_conf/conf.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  default:
+    external:
+      name: dev
